@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  crazy-rbac-server:
+    build:
+      context: images/rbac-server
+    image: crazy-rbac:latest
+    container_name: crazy-rbac
+    ports:
+      - "8000:8000"
+      - "8009:8009"
+    volumes:
+      - ${HOME}/PycharmProjects/Crazy-RBAC/src:/srv/server
+    command: "tail -f /root/requirements.txt"
+
+  crazy-postgres:
+    image: postgres:latest
+    container_name: crazy-postgres
+    environment:
+      - POSTGRES_PASSWORD=rbac2022
+    ports:
+      - "5432:5432"
+
+  crazy-redis:
+    image: redis:latest
+    container_name: crazy-redis
+    ports:
+      - "6379:6379"
