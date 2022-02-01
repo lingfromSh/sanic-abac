@@ -17,8 +17,8 @@ class AttributeType(BaseModel):
     """
 
     name = fields.CharField(max_length=255)
-    belong_to = fields.ForeignKeyField("AttributeType", related_name="sub_attr_types", null=True)
-    type = fields.ForeignKeyField("BasicAttributeType", related_name="bound_attr_types", null=True)
+    belong_to = fields.ForeignKeyField("models.AttributeType", related_name="sub_attr_types", null=True)
+    type = fields.ForeignKeyField("models.BasicAttributeType", related_name="bound_attr_types", null=True)
     desc = fields.TextField(null=True)
 
     is_multiple = fields.BooleanField(default=False)
@@ -37,10 +37,10 @@ class Attribute(BaseModel):
 
     name = fields.CharField(max_length=255)
     code = fields.CharField(max_length=255)
-    parent = fields.ForeignKeyField("Attribute")
-    type = fields.ForeignKeyField("AttributeType", related_name="used_in_attributes")
+    parent = fields.ForeignKeyField("models.Attribute", null=True)
+    type = fields.ForeignKeyField("models.AttributeType", related_name="used_in_attributes")
     desc = fields.TextField()
-    tags = fields.JSONField()
+    tags = fields.JSONField(null=True)
 
     class Meta:
         unique_together = ("code", "parent")

@@ -10,7 +10,7 @@ class Rule(BaseModel):
     name = fields.CharField(max_length=255)
     desc = fields.TextField()
     tags = fields.JSONField()
-    on_attributes = fields.ManyToManyField("Attribute")
+    on_attributes = fields.ManyToManyField("models.Attribute")
 
 
 class RuleDoorForAttribute(BaseModel):
@@ -18,10 +18,10 @@ class RuleDoorForAttribute(BaseModel):
     Choose door for attributes.
     """
 
-    rule = fields.ForeignKeyField("Rule")
-    attribute = fields.ForeignKeyField("Attribute")
-    door = fields.ForeignKeyField("Door")
-    parent = fields.ForeignKeyField("RuleDoorForAttribute")
+    rule = fields.ForeignKeyField("models.Rule")
+    attribute = fields.ForeignKeyField("models.Attribute")
+    door = fields.ForeignKeyField("models.Door")
+    parent = fields.ForeignKeyField("models.RuleDoorForAttribute", null=True)
     params = fields.JSONField()
 
 
@@ -30,8 +30,8 @@ class RuleFilterForAttribute(BaseModel):
     Choose filter for attributes.
     """
 
-    rule = fields.ForeignKeyField("Rule")
-    attribute = fields.ForeignKeyField("Attribute")
-    filter = fields.ForeignKeyField("Filter")
-    parent = fields.ForeignKeyField("RuleFilterForAttribute")
+    rule = fields.ForeignKeyField("models.Rule")
+    attribute = fields.ForeignKeyField("models.Attribute")
+    filter = fields.ForeignKeyField("models.Filter")
+    parent = fields.ForeignKeyField("models.RuleFilterForAttribute")
     params = fields.JSONField()

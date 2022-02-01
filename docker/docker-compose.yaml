@@ -1,16 +1,16 @@
 version: "3.8"
 
 services:
-  crazy-rbac-server:
+  crazy-abac-server:
     build:
-      context: images/rbac-server
+      context: images/abac-server
     image: crazy-rbac:latest
-    container_name: crazy-rbac
+    container_name: crazy-abac
     ports:
       - "8000:8000"
       - "8009:8009"
     volumes:
-      - ${HOME}/PycharmProjects/Crazy-RBAC/src:/srv/server
+      - ${HOME}/PycharmProjects/crazy-abac/src:/srv/server
     command: "tail -f /root/requirements.txt"
 
   crazy-postgres:

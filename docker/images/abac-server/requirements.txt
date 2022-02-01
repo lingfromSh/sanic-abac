@@ -1,4 +1,5 @@
 # common
+asyncpg==0.25.0
 aiofiles==0.8.0
 aiosqlite==0.17.0
 ciso8601==2.2.0

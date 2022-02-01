@@ -26,8 +26,8 @@ class BasicAttributeTypeFilter(BaseModel):
     Allowed filters for basic attribute type.
     """
 
-    basic_attribute_type = fields.ForeignKeyField("BasicAttributeType")
-    filter = fields.ForeignKeyField("Filter")
+    basic_attribute_type = fields.ForeignKeyField("models.BasicAttributeType")
+    filter = fields.ForeignKeyField("models.Filter")
     default_params = fields.JSONField()
 
     def filter_value(self, value):
@@ -40,8 +40,8 @@ class AttributeTypeFilter(BaseModel):
     Attribute type's bound filters.
     """
 
-    attribute_type = fields.ForeignKeyField("AttributeType")
-    filter = fields.ForeignKeyField("Filter")
+    attribute_type = fields.ForeignKeyField("models.AttributeType")
+    filter = fields.ForeignKeyField("models.Filter")
     default_params = fields.JSONField()
 
     def filter_value(self, value):
